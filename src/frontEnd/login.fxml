@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="400.0" fitWidth="247.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/resources/hospital-building-vector-icon-illustration-building-landmark-icon-concept-white-isolated_138676-440.jpg" />
+                  <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/src/resources/hospital-building-vector-icon-illustration-building-landmark-icon-concept-white-isolated_138676-440.jpg" />
                </image>
             </ImageView>
          </children>
@@ -26,9 +26,9 @@
    <right>
       <AnchorPane prefHeight="332.0" prefWidth="400.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="84.0" fitWidth="80.0" layoutX="189.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="84.0" fitWidth="80.0" layoutX="182.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/resources/user%20(1).png" />
+                  <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/src/resources/user%20(1).png" />
                </image>
             </ImageView>
             <Label layoutX="37.0" layoutY="200.0" text="User Email">

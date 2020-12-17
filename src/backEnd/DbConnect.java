@@ -1,3 +1,5 @@
+package backEnd;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -6,8 +8,8 @@ import java.sql.Statement;
 public class DbConnect {
     static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
-    static final String USER = "admin";
-    static final String PASS = "admin";
+    static final String USER = "system";
+    static final String PASS = "system";
     public Connection conn = null;
     Statement stmt = null;
 
