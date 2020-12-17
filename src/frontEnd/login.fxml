@@ -36,7 +36,7 @@
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="141.0" layoutY="198.0" minHeight="27.0" minWidth="178.0">
+            <TextField layoutX="142.0" layoutY="198.0" minHeight="27.0" minWidth="178.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></TextField>

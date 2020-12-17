@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <left>
+        <AnchorPane prefHeight="400.0" prefWidth="286.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="249.0" fitWidth="254.0" layoutX="15.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../resources/doctors-concept-illustration_114360-1515.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="400.0" prefWidth="376.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="7.0" layoutY="101.0" prefHeight="24.0" prefWidth="43.0" text="Name">
+                    <font>
+                        <Font name="Berlin Sans FB" size="16.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="93.0" layoutY="100.0" prefHeight="25.0" prefWidth="196.0" />
+                <Label layoutX="5.0" layoutY="138.0" prefHeight="24.0" prefWidth="67.0" text="Password">
+                    <font>
+                        <Font name="Berlin Sans FB" size="16.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="93.0" layoutY="138.0" prefHeight="25.0" prefWidth="196.0" />
+                <Label layoutX="6.0" layoutY="181.0" prefHeight="24.0" prefWidth="63.0" text="Gender">
+                    <font>
+                        <Font name="Berlin Sans FB" size="16.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="93.0" layoutY="182.0" prefHeight="25.0" prefWidth="196.0" />
+                <Label layoutX="7.0" layoutY="223.0" prefHeight="24.0" prefWidth="67.0" text="Address">
+                    <font>
+                        <Font name="Berlin Sans FB" size="16.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="93.0" layoutY="223.0" prefHeight="25.0" prefWidth="196.0" />
+                <Label layoutX="7.0" layoutY="264.0" prefHeight="24.0" prefWidth="79.0" text="Designation">
+                    <font>
+                        <Font name="Berlin Sans FB" size="16.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="94.0" layoutY="263.0" prefHeight="25.0" prefWidth="189.0" />
+                <Text layoutX="81.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Signup" wrappingWidth="205.5703125">
+                    <font>
+                        <Font name="Berlin Sans FB" size="24.0" />
+                    </font>
+                </Text>
+            <Label layoutX="8.0" layoutY="305.0" prefHeight="24.0" prefWidth="67.0" text="Phone">
+               <font>
+                  <Font name="Berlin Sans FB" size="16.0" />
+               </font>
+            </Label>
+            <TextField layoutX="93.0" layoutY="305.0" prefHeight="25.0" prefWidth="196.0" />
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>
