@@ -1,0 +1,345 @@
+drop table bill;
+drop table prescription;
+drop table appointment;
+drop table doctor;
+
+--create table Employee
+create table employee( 
+emp_username varchar2(30) not null,
+emp_password varchar2(30) not null,
+emp_code varchar2(10) Not Null,
+emp_name varchar2(60) Not Null,
+emp_gender varchar2(10) Not Null,
+emp_address varchar2(200) Not Null,
+emp_designation varchar2(20) Not Null,
+emp_number number(11,0) Not Null,
+constraint pk_emp primary key (emp_code)
+);
+
+--create table doctor
+create table doctor(
+doc_username varchar2(30),
+doc_password varchar2(30),
+doc_code varchar2(10) Not Null,
+doc_name varchar2(60) Not Null,
+doc_gender varchar2(10) Not Null,
+doc_address varchar2(200) Not Null,
+doc_designation varchar2(30) Not Null,
+doc_number number(11,0) Not Null,
+constraint pk_doctor primary key (doc_code)
+);
+
+--Create table appointment
+create table appointment (
+AID varchar2(10) Not Null,
+pat_name varchar2(60) Not Null,
+pat_age number Not Null,
+pat_gender varchar2(10) Not Null,
+pat_address varchar2(100) Not Null,
+pat_number number(11,0) Not Null,
+pat_doc_code varchar2(10) Not Null,
+constraint pk_appointment primary key (AID),
+constraint fk_doc_code foreign key (pat_doc_code) references doctor(doc_code)
+);
+
+
+--Create table prescription
+create table prescription(
+PID varchar2(10) Not Null,
+prescription_advice varchar2(200) Not Null,
+prescription_date date Not Null,
+pat_name varchar2(60) Not Null,
+pat_age number Not Null,
+pat_gender varchar2(10) Not Null,
+medicine varchar2(100) Not Null,
+AID varchar2(10) Not Null,
+doc_name varchar2(60) Not Null,
+constraint pk_prescription primary key(PID),
+constraint fk_AID foreign key (AID) references appointment(AID)
+);
+
+
+--create table bill
+create table bill(
+bill_no varchar2(10) Not Null,
+AID varchar2(10) Not Null,
+pat_age number Not Null,
+pat_name varchar2(60) Not Null,
+pat_gender varchar2(10) Not Null,
+doc_name varchar2(60) Not Null,
+amount NUMBER(19,9) Not Null,
+constraint pk_bill primary key (bill_no),
+constraint fk_bill_AID foreign key (AID) references appointment(AID)
+);
+
+
+
+insert into doctor(doc_name,doc_gender,doc_address,doc_designation,doc_number) values ('b','male','U','med',12300000000);
+
+insert into appointment(pat_name,pat_gender,pat_address,pat_number,pat_doc_code) values ('s','female','D',12300000000,'D101');
+
+insert into prescription(prescription_details,prescription_date,AID) values ('bla','meh',TO_DATE('1980-05-01','YYYY-MM-DD'),'A101');
+
+insert into bill(AID,pat_name,pat_gender,pat_address,doc_name,amount) values ('A101','s','female','D','a',10000);
+
+
+
+
+
+--- Function for Doctor Table
+
+
+CREATE OR REPLACE FUNCTION GEN_DOC_ID
+RETURN VARCHAR2
+IS
+
+G_ID VARCHAR2(15);
+ID VARCHAR2(15);
+ID_VALUE NUMBER;
+
+BEGIN
+
+SELECT MAX(doc_code) INTO G_ID FROM doctor;
+
+IF G_ID IS NULL --- Does not exist
+THEN
+    ID := '101' ;
+
+ELSE
+select max(substr(doc_code,-3)) into ID_VALUE from doctor;
+    ID_VALUE := ID_VALUE + 1;
+	id := to_char(ID_VALUE);
+
+END IF;
+
+RETURN NVL(('D' || ID),-1);
+
+END;
+/
+
+CREATE OR REPLACE TRIGGER TRG_GEN_DOC_ID
+BEFORE INSERT ON doctor
+FOR EACH ROW
+
+BEGIN
+
+:NEW.doc_code := GEN_DOC_ID();
+
+END;
+/
+
+
+
+--- Function for Appointment Table
+
+
+CREATE OR REPLACE FUNCTION GEN_AID
+RETURN VARCHAR2
+IS
+
+G_ID VARCHAR2(15);
+ID VARCHAR2(15);
+ID_VALUE NUMBER;
+
+BEGIN
+
+SELECT MAX(AID) INTO G_ID FROM appointment;
+
+IF G_ID IS NULL --- Does not exist
+THEN
+    ID := '101' ;
+
+ELSE
+select max(substr(AID,-3)) into ID_VALUE from appointment;
+    ID_VALUE := ID_VALUE + 1;
+	id := to_char(ID_VALUE);
+
+END IF;
+
+RETURN NVL(('A' || ID),-1);
+
+END;
+/
+
+CREATE OR REPLACE TRIGGER TRG_GEN_AID
+BEFORE INSERT ON appointment
+FOR EACH ROW
+
+BEGIN
+
+:NEW.AID := GEN_AID();
+
+END;
+/
+
+
+
+--- Function for prescription Table
+
+CREATE OR REPLACE FUNCTION GEN_prescription_ID
+RETURN VARCHAR2
+IS
+
+G_ID VARCHAR2(15);
+ID VARCHAR2(15);
+ID_VALUE NUMBER;
+
+BEGIN
+
+SELECT MAX(PID) INTO G_ID FROM prescription;
+
+IF G_ID IS NULL --- Does not exist
+THEN
+    ID := '101' ;
+
+ELSE
+select max(substr(PID,-3)) into ID_VALUE from prescription;
+    ID_VALUE := ID_VALUE + 1;
+	id := to_char(ID_VALUE);
+
+END IF;
+
+RETURN NVL(('P' || ID),-1);
+
+END;
+/
+
+--- Trigger for Prescription Table
+CREATE OR REPLACE TRIGGER TRG_Prescription
+BEFORE INSERT ON prescription
+FOR EACH ROW
+
+DECLARE
+DOC_ID VARCHAR(10);
+
+BEGIN
+
+:NEW.PID := GEN_prescription_ID();
+
+IF :NEW.PAT_AGE IS NULL THEN
+     SELECT PAT_AGE INTO :NEW.PAT_AGE FROM appointment WHERE AID=:NEW.AID;
+END IF;
+
+IF :NEW.PAT_NAME IS NULL THEN
+     SELECT PAT_NAME INTO :NEW.PAT_NAME FROM appointment WHERE AID=:NEW.AID;
+END IF;
+
+IF :NEW.PAT_GENDER IS NULL THEN
+     SELECT PAT_GENDER INTO :NEW.PAT_GENDER FROM appointment WHERE AID=:NEW.AID;
+END IF;
+
+IF :NEW.DOC_NAME IS NULL THEN
+     SELECT PAT_DOC_CODE INTO DOC_ID FROM appointment WHERE AID=:NEW.AID;
+	 SELECT DOC_NAME INTO :NEW.DOC_NAME FROM DOCTOR WHERE DOC_CODE = DOC_ID;
+END IF;
+
+END;
+/
+
+
+--- Function for Bill Table
+
+CREATE OR REPLACE FUNCTION GEN_Bill_ID
+RETURN VARCHAR2
+IS
+
+G_ID VARCHAR2(15);
+ID VARCHAR2(15);
+ID_VALUE NUMBER;
+
+BEGIN
+
+SELECT MAX(bill_no) INTO G_ID FROM bill;
+
+IF G_ID IS NULL --- Does not exist
+THEN
+    ID := '101' ;
+
+ELSE
+select max(substr(bill_no,-3)) into ID_VALUE from bill;
+    ID_VALUE := ID_VALUE + 1;
+	id := to_char(ID_VALUE);
+
+END IF;
+
+RETURN NVL(('B' || ID),-1);
+
+END;
+/
+
+--- Trigger for Bill Table
+CREATE OR REPLACE TRIGGER TRG_BILL
+BEFORE INSERT ON bill
+FOR EACH ROW
+
+DECLARE
+DOC_ID VARCHAR(10);
+
+BEGIN
+:NEW.BILL_NO := GEN_Bill_ID();
+
+IF :NEW.PAT_AGE IS NULL THEN
+     SELECT PAT_AGE INTO :NEW.PAT_AGE FROM appointment WHERE AID=:NEW.AID;
+END IF;
+
+IF :NEW.PAT_NAME IS NULL THEN
+     SELECT PAT_NAME INTO :NEW.PAT_NAME FROM appointment WHERE AID=:NEW.AID;
+END IF;
+
+IF :NEW.PAT_GENDER IS NULL THEN
+     SELECT PAT_GENDER INTO :NEW.PAT_GENDER FROM appointment WHERE AID=:NEW.AID;
+END IF;
+
+IF :NEW.DOC_NAME IS NULL THEN
+     SELECT PAT_DOC_CODE INTO DOC_ID FROM appointment WHERE AID=:NEW.AID;
+	 SELECT DOC_NAME INTO :NEW.DOC_NAME FROM DOCTOR WHERE DOC_CODE = DOC_ID;
+END IF;
+
+END;
+/
+
+--- Function for employee Table
+CREATE OR REPLACE FUNCTION GEN_EMP_ID
+RETURN VARCHAR2
+IS
+
+G_ID VARCHAR2(15);
+ID VARCHAR2(15);
+ID_VALUE NUMBER;
+
+BEGIN
+
+SELECT MAX(emp_code) INTO G_ID FROM employee;
+
+IF G_ID IS NULL --- Does not exist
+THEN
+    ID := '101' ;
+
+ELSE
+select max(substr(emp_code,-3)) into ID_VALUE from employee;
+    ID_VALUE := ID_VALUE + 1;
+	id := to_char(ID_VALUE);
+
+END IF;
+
+RETURN NVL(('E' || ID),-1);
+
+END;
+/
+
+--- Trigger for employee
+
+CREATE OR REPLACE TRIGGER TRG_GEN_EMP_ID
+BEFORE INSERT ON employee
+FOR EACH ROW
+
+BEGIN
+
+:NEW.emp_code := GEN_EMP_ID();
+
+END;
+/
+
+
+
+
