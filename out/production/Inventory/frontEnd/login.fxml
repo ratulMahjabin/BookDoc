@@ -21,7 +21,7 @@
                   <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/src/resources/hospital-building-vector-icon-illustration-building-landmark-icon-concept-white-isolated_138676-440.jpg" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#backButtonPress" prefHeight="34.0" prefWidth="90.0" text="Go Back">
+            <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#backButtonPress" prefHeight="34.0" prefWidth="90.0" style="-fx-background-color: f3f3f9;" text="Go Back">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
