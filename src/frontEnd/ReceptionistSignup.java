@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ReceptionistSignup {
     public void backButtonPress(ActionEvent event) throws IOException {
-        Parent loginViewParent = FXMLLoader.load(getClass().getResource("LandingPage.fxml"));
+        Parent loginViewParent = FXMLLoader.load(getClass().getResource("RoleSelection.fxml"));
         Scene loginViewScene = new Scene(loginViewParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(loginViewScene);

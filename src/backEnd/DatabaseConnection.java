@@ -5,15 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DbConnect {
+public class DatabaseConnection {
     static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
-    static final String USER = "system";
-    static final String PASS = "system";
+    static final String USER = "HMSADMIN";
+    static final String PASS = "ADMIN";
     public Connection conn = null;
     Statement stmt = null;
 
-    public DbConnect() {
+    public DatabaseConnection() {
 
         try {
             Class.forName(JDBC_DRIVER);
@@ -26,9 +26,5 @@ public class DbConnect {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        new DbConnect();
     }
 }
