@@ -3,23 +3,33 @@ drop table prescription;
 drop table appointment;
 drop table doctor;
 
---create table Employee
-create table employee( 
-emp_username varchar2(30) not null,
-emp_password varchar2(30) not null,
-emp_code varchar2(10) Not Null,
-emp_name varchar2(60) Not Null,
-emp_gender varchar2(10) Not Null,
-emp_address varchar2(200) Not Null,
-emp_designation varchar2(20) Not Null,
-emp_number number(11,0) Not Null,
-constraint pk_emp primary key (emp_code)
+--create table Admin
+create table Admin( 
+adm_username varchar2(30) not null,
+adm_password varchar2(30) not null,
+adm_code varchar2(10) Not Null,
+adm_name varchar2(60) Not Null,
+adm_gender varchar2(10) Not Null,
+adm_address varchar2(200) Not Null,
+adm_number number(11,0) Not Null,
+constraint pk_admin primary key (adm_code)
+);
+
+create table Receptionist( 
+rec_username varchar2(30) not null,
+rec_password varchar2(30) not null,
+rec_code varchar2(10) Not Null,
+rec_name varchar2(60) Not Null,
+rec_gender varchar2(10) Not Null,
+rec_address varchar2(200) Not Null,
+rec_number number(11,0) Not Null,
+constraint pk_receptionist primary key (rec_code)
 );
 
 --create table doctor
 create table doctor(
-doc_username varchar2(30),
-doc_password varchar2(30),
+doc_username varchar2(30) not null,
+doc_password varchar2(30) not null,
 doc_code varchar2(10) Not Null,
 doc_name varchar2(60) Not Null,
 doc_gender varchar2(10) Not Null,
@@ -71,18 +81,6 @@ amount NUMBER(19,9) Not Null,
 constraint pk_bill primary key (bill_no),
 constraint fk_bill_AID foreign key (AID) references appointment(AID)
 );
-
-
-
-insert into doctor(doc_name,doc_gender,doc_address,doc_designation,doc_number) values ('b','male','U','med',12300000000);
-
-insert into appointment(pat_name,pat_gender,pat_address,pat_number,pat_doc_code) values ('s','female','D',12300000000,'D101');
-
-insert into prescription(prescription_details,prescription_date,AID) values ('bla','meh',TO_DATE('1980-05-01','YYYY-MM-DD'),'A101');
-
-insert into bill(AID,pat_name,pat_gender,pat_address,doc_name,amount) values ('A101','s','female','D','a',10000);
-
-
 
 
 
@@ -298,8 +296,8 @@ END IF;
 END;
 /
 
---- Function for employee Table
-CREATE OR REPLACE FUNCTION GEN_EMP_ID
+--- Function for admin Table
+CREATE OR REPLACE FUNCTION GEN_ADMIN_ID
 RETURN VARCHAR2
 IS
 
@@ -309,37 +307,78 @@ ID_VALUE NUMBER;
 
 BEGIN
 
-SELECT MAX(emp_code) INTO G_ID FROM employee;
+SELECT MAX(adm_code) INTO G_ID FROM admin;
 
 IF G_ID IS NULL --- Does not exist
 THEN
     ID := '101' ;
 
 ELSE
-select max(substr(emp_code,-3)) into ID_VALUE from employee;
+select max(substr(adm_code,-3)) into ID_VALUE from admin;
     ID_VALUE := ID_VALUE + 1;
 	id := to_char(ID_VALUE);
 
 END IF;
 
-RETURN NVL(('E' || ID),-1);
+RETURN NVL(('ADM' || ID),-1);
 
 END;
 /
 
---- Trigger for employee
+--- Trigger for Admin
 
-CREATE OR REPLACE TRIGGER TRG_GEN_EMP_ID
-BEFORE INSERT ON employee
+CREATE OR REPLACE TRIGGER TRG_GEN_ADMIN_ID
+BEFORE INSERT ON admin
 FOR EACH ROW
 
 BEGIN
 
-:NEW.emp_code := GEN_EMP_ID();
+:NEW.adm_code := GEN_ADMIN_ID();
 
 END;
 /
 
+--- Function for Receptionist Table
+CREATE OR REPLACE FUNCTION GEN_RECEPTIONIST_ID
+RETURN VARCHAR2
+IS
+
+G_ID VARCHAR2(15);
+ID VARCHAR2(15);
+ID_VALUE NUMBER;
+
+BEGIN
+
+SELECT MAX(rec_code) INTO G_ID FROM Receptionist;
+
+IF G_ID IS NULL --- Does not exist
+THEN
+    ID := '101' ;
+
+ELSE
+select max(substr(rec_code,-3)) into ID_VALUE from receptionist;
+    ID_VALUE := ID_VALUE + 1;
+	id := to_char(ID_VALUE);
+
+END IF;
+
+RETURN NVL(('R' || ID),-1);
+
+END;
+/
+
+--- Trigger for receptionist
+
+CREATE OR REPLACE TRIGGER TRG_GEN_REC_ID
+BEFORE INSERT ON receptionist
+FOR EACH ROW
+
+BEGIN
+
+:NEW.rec_code := GEN_RECEPTIONIST_ID();
+
+END;
+/
 
 
 
