@@ -62,6 +62,58 @@ public class Database {
         }
         return false;
     }
+    public void insertAdminRecord(String userEmail, String pass, String name, String gender, String address, String phoneNum){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String insertQuery = "INSERT INTO ADMIN (ADM_USERNAME, ADM_PASSWORD, ADM_NAME,ADM_GENDER, ADM_ADDRESS,ADM_NUMBER) VALUES (?, ?, ?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1, userEmail);
+            preparedStatement.setString(2, pass);
+            preparedStatement.setString(3, name);
+            preparedStatement.setString(4, gender);
+            preparedStatement.setString(5, address);
+            preparedStatement.setString(6, phoneNum);
+            preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void insertReceptionistRecord(String userEmail, String pass, String name, String gender, String address, String phoneNum){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String insertQuery = "INSERT INTO RECEPTIONIST (REC_USERNAME, REC_PASSWORD, REC_NAME,REC_GENDER, REC_ADDRESS,REC_NUMBER) VALUES (?, ?, ?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1, userEmail);
+            preparedStatement.setString(2, pass);
+            preparedStatement.setString(3, name);
+            preparedStatement.setString(4, gender);
+            preparedStatement.setString(5, address);
+            preparedStatement.setString(6, phoneNum);
+            preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void insertDoctorRecord(String userEmail, String pass, String name, String gender, String address,String designation, String phone){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String insertQuery = "INSERT INTO DOCTOR (DOC_USERNAME, DOC_PASSWORD, DOC_NAME,DOC_GENDER, DOC_ADDRESS,DOC_DESIGNATION, DOC_NUMBER) VALUES (?, ?, ?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1, userEmail);
+            preparedStatement.setString(2, pass);
+            preparedStatement.setString(3, name);
+            preparedStatement.setString(4, gender);
+            preparedStatement.setString(5, address);
+            preparedStatement.setString(6,designation);
+            preparedStatement.setString(7, phone);
+            preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

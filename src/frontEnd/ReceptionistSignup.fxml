@@ -34,41 +34,55 @@
     <right>
         <AnchorPane prefHeight="400.0" prefWidth="376.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="16.0" layoutY="101.0" prefHeight="24.0" prefWidth="43.0" text="Name">
+                <Label layoutX="20.0" layoutY="118.0" prefHeight="24.0" prefWidth="43.0" text="Name">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="100.0" prefHeight="25.0" prefWidth="196.0" />
-                <Label layoutX="14.0" layoutY="138.0" prefHeight="24.0" prefWidth="67.0" text="Password">
+                <TextField fx:id="nameField" layoutX="99.0" layoutY="117.0" prefHeight="25.0" prefWidth="196.0" />
+                <Label layoutX="18.0" layoutY="155.0" prefHeight="24.0" prefWidth="67.0" text="Password">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="138.0" prefHeight="25.0" prefWidth="196.0" />
-                <Label layoutX="15.0" layoutY="181.0" prefHeight="24.0" prefWidth="63.0" text="Gender">
+                <TextField fx:id="passwordField" layoutX="99.0" layoutY="155.0" prefHeight="25.0" prefWidth="196.0" />
+                <Label layoutX="18.0" layoutY="198.0" prefHeight="24.0" prefWidth="63.0" text="Gender">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="182.0" prefHeight="25.0" prefWidth="196.0" />
-                <Label layoutX="14.0" layoutY="223.0" prefHeight="24.0" prefWidth="67.0" text="Address">
+                <TextField fx:id="genderField" layoutX="99.0" layoutY="199.0" prefHeight="25.0" prefWidth="196.0" />
+                <Label layoutX="18.0" layoutY="240.0" prefHeight="24.0" prefWidth="67.0" text="Address">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="223.0" prefHeight="25.0" prefWidth="196.0" />
-                <Label layoutX="14.0" layoutY="263.0" prefHeight="24.0" prefWidth="67.0" text="Phone">
+                <TextField fx:id="addressField" layoutX="99.0" layoutY="240.0" prefHeight="25.0" prefWidth="196.0" />
+                <Label layoutX="18.0" layoutY="280.0" prefHeight="24.0" prefWidth="67.0" text="Phone">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="263.0" prefHeight="25.0" prefWidth="196.0" />
+                <TextField fx:id="phoneField" layoutX="99.0" layoutY="280.0" prefHeight="25.0" prefWidth="196.0" />
                 <Text layoutX="81.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receptionist Signup" wrappingWidth="205.5703125">
                     <font>
                         <Font name="Berlin Sans FB" size="24.0" />
                     </font>
                 </Text>
+            <Button fx:id="submitBtn" layoutX="139.0" layoutY="331.0" mnemonicParsing="false" onAction="#register" prefHeight="33.0" prefWidth="99.0" style="-fx-background-color: F3F3F9;" text="Submit">
+               <font>
+                  <Font name="Berlin Sans FB" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Label layoutX="18.0" layoutY="80.0" prefHeight="24.0" prefWidth="71.0" text="Username">
+               <font>
+                  <Font name="Berlin Sans FB" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userNameField" layoutX="99.0" layoutY="79.0" prefHeight="25.0" prefWidth="196.0" />
             </children>
         </AnchorPane>
     </right>

@@ -39,32 +39,32 @@
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="100.0" prefHeight="25.0" prefWidth="196.0" />
+                <TextField fx:id="nameField" layoutX="93.0" layoutY="100.0" prefHeight="25.0" prefWidth="196.0" />
                 <Label layoutX="5.0" layoutY="138.0" prefHeight="24.0" prefWidth="67.0" text="Password">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="138.0" prefHeight="25.0" prefWidth="196.0" />
+                <TextField fx:id="passwordField" layoutX="93.0" layoutY="138.0" prefHeight="25.0" prefWidth="196.0" />
                 <Label layoutX="6.0" layoutY="181.0" prefHeight="24.0" prefWidth="63.0" text="Gender">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="182.0" prefHeight="25.0" prefWidth="196.0" />
+                <TextField fx:id="genderField" layoutX="93.0" layoutY="182.0" prefHeight="25.0" prefWidth="196.0" />
                 <Label layoutX="7.0" layoutY="223.0" prefHeight="24.0" prefWidth="67.0" text="Address">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="93.0" layoutY="223.0" prefHeight="25.0" prefWidth="196.0" />
+                <TextField fx:id="addressField" layoutX="93.0" layoutY="223.0" prefHeight="25.0" prefWidth="196.0" />
                 <Label layoutX="7.0" layoutY="264.0" prefHeight="24.0" prefWidth="79.0" text="Designation">
                     <font>
                         <Font name="Berlin Sans FB" size="16.0" />
                     </font>
                 </Label>
-                <TextField layoutX="94.0" layoutY="263.0" prefHeight="25.0" prefWidth="189.0" />
-                <Text layoutX="81.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Signup" wrappingWidth="205.5703125">
+                <TextField fx:id="designationField" layoutX="94.0" layoutY="263.0" prefHeight="25.0" prefWidth="189.0" />
+                <Text layoutX="112.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Signup" wrappingWidth="149.5703125">
                     <font>
                         <Font name="Berlin Sans FB" size="24.0" />
                     </font>
@@ -74,7 +74,21 @@
                   <Font name="Berlin Sans FB" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="93.0" layoutY="305.0" prefHeight="25.0" prefWidth="196.0" />
+            <TextField fx:id="phoneField" layoutX="93.0" layoutY="305.0" prefHeight="25.0" prefWidth="196.0" />
+            <Button fx:id="submitBtn" layoutX="141.0" layoutY="347.0" mnemonicParsing="false" onAction="#register" prefHeight="33.0" prefWidth="88.0" style="-fx-background-color: F3F3F9;" text="Submit">
+               <font>
+                  <Font name="Berlin Sans FB" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Label layoutX="7.0" layoutY="64.0" prefHeight="24.0" prefWidth="75.0" text="Username">
+               <font>
+                  <Font name="Berlin Sans FB" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userNameField" layoutX="93.0" layoutY="63.0" prefHeight="25.0" prefWidth="196.0" />
             </children>
         </AnchorPane>
     </right>
