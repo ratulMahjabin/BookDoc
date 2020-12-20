@@ -1,6 +1,6 @@
 package frontEnd;
 
-import backEnd.DatabaseConnection;
+import backEnd.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,27 +11,34 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
-import javax.swing.*;
+
 import java.io.IOException;
+import java.sql.SQLException;
+
 
 public class LoginController {
-        ObservableList<String>roleChoiceList = FXCollections.observableArrayList("Admin","Doctor","Receptionist");
+    ObservableList<String> roleChoiceList = FXCollections.observableArrayList("Admin", "Doctor", "Receptionist");
     @FXML
     private ChoiceBox roleChoiceBox;
     @FXML
-    private void initialize(){
+    private Label errorText;
+
+    @FXML
+    private void initialize() {
         roleChoiceBox.setValue("Admin");
         roleChoiceBox.setItems(roleChoiceList);
     }
+
     @FXML
-    private TextField userEmail;
+    public TextField userEmail;
 
     @FXML
     private Button btnLogin;
 
     @FXML
-    private PasswordField userPassword;
+    public PasswordField userPassword;
 
     public void backButtonPress(ActionEvent event) throws IOException {
         Parent loginViewParent = FXMLLoader.load(getClass().getResource("LandingPage.fxml"));
@@ -40,20 +47,78 @@ public class LoginController {
         window.setScene(loginViewScene);
         window.show();
     }
-    public void loginButtonPress(ActionEvent event){
-        String inputEmail = userEmail.getText();
-        String inputPassword = userPassword.getText();
 
-        if (inputEmail.equals("") && inputPassword.equals("")){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Login Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Fields are Blank!");
-            alert.showAndWait();
+    public void login(ActionEvent event) throws SQLException{
+        Window owner = btnLogin.getScene().getWindow();
+        if(userEmail.getText().isEmpty()){
+            showAlert(Alert.AlertType.ERROR,owner,"Form Error!","Please enter email");
+            return;
         }
-        else {
+        if(userPassword.getText().isEmpty()){
+            showAlert(Alert.AlertType.ERROR,owner,"Form Error!","Please enter password");
+            return;
+        }
+        String emailId = userEmail.getText();
+        String password=userPassword.getText();
+        String role = (String) roleChoiceBox.getValue();
 
+        Database database = new Database();
+        if (role== "Admin"){
+            boolean flag = database.validateAdminLogin(emailId,password);
+
+            if(!flag){
+                infoBox("Invalid Login Try Again",null,"Failed");
+            }
+            else {
+                infoBox("Login Successful",null,"Success");
+            }
         }
+        if (role=="Doctor"){
+            boolean flag = database.validateDoctorLogin(emailId,password);
+
+            if(!flag){
+                infoBox("Invalid Login Try Again",null,"Failed");
+            }
+            else {
+                infoBox("Login Successful",null,"Success");
+            }
+        }
+        if(role=="Receptionist"){
+            boolean flag = database.validateReceptionistLogin(emailId,password);
+
+            if(!flag){
+                infoBox("Invalid Login Try Again",null,"Failed");
+            }
+            else {
+                infoBox("Login Successful",null,"Success");
+            }
+        }
+//        boolean flag = database.validateAdminLogin(emailId,password);
+//
+//        if(!flag){
+//            infoBox("Invalid Login Try Again",null,"Failed");
+//        }
+//        else {
+//            infoBox("Login Successful",null,"Success");
+//        }
+
+
+    }
+    public static void infoBox(String infoMessage, String headerText, String title) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 
 }

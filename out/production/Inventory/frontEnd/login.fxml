@@ -55,7 +55,7 @@
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnLogin" layoutX="172.0" layoutY="287.0" mnemonicParsing="false" onAction="#loginButtonPress" prefHeight="33.0" prefWidth="82.0" text="Login">
+            <Button fx:id="btnLogin" layoutX="181.0" layoutY="304.0" mnemonicParsing="false" onAction="#login" prefHeight="33.0" prefWidth="82.0" text="Login">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
@@ -66,6 +66,11 @@
             <PasswordField fx:id="userPassword" layoutX="139.0" layoutY="238.0" prefHeight="25.0" prefWidth="177.0" promptText="Enter Password" />
             <ChoiceBox fx:id="roleChoiceBox" layoutX="140.0" layoutY="138.0" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: f3f3f9;" />
             <Label layoutX="59.0" layoutY="140.0" text="Role">
+               <font>
+                  <Font name="Berlin Sans FB" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorText" layoutX="64.0" layoutY="274.0" prefHeight="21.0" prefWidth="254.0" textAlignment="CENTER" textFill="#ff1818">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
