@@ -114,6 +114,23 @@ public class Database {
             e.printStackTrace();
         }
     }
+    public void makeAppointment(String name, String age, String gender, String address, String number,String docCode){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String insertQuery = "INSERT INTO APPOINTMENT (PAT_NAME, PAT_AGE, PAT_GENDER,PAT_ADDRESS, PAT_NUMBER,PAT_DOC_CODE) VALUES (?, ?, ?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, age);
+            preparedStatement.setString(3, gender);
+            preparedStatement.setString(4, address);
+            preparedStatement.setString(5, number);
+            preparedStatement.setString(6,docCode);
+            preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
