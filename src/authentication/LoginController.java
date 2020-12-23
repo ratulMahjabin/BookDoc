@@ -82,6 +82,12 @@ public class LoginController {
             }
             else {
                 infoBox("Login Successful",null,"Success");
+                Parent loginViewParent = FXMLLoader.load(getClass().getResource("..//doctorInterface//DoctorDashboard.fxml"));
+                Scene loginViewScene = new Scene(loginViewParent);
+                Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                window.setScene(loginViewScene);
+                window.setResizable(false);
+                window.show();
             }
         }
         if(role=="Receptionist"){

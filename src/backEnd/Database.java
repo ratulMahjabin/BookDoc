@@ -1,5 +1,7 @@
 package backEnd;
 
+import javafx.scene.control.TextField;
+
 import java.sql.*;
 
 public class Database {
@@ -126,6 +128,43 @@ public class Database {
             preparedStatement.setString(4, address);
             preparedStatement.setString(5, number);
             preparedStatement.setString(6,docCode);
+            preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getPatientData(String AID, TextField name, TextField age, TextField gender){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String fetchQuery = "SELECT PAT_NAME,PAT_AGE,PAT_GENDER FROM APPOINTMENT WHERE AID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(fetchQuery);
+            preparedStatement.setString(1,AID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String patName = resultSet.getString(1);
+                String patAge = resultSet.getString(2);
+                String patGender = resultSet.getString(3);
+                name.setText(patName);
+                age.setText(patAge);
+                gender.setText(patGender);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void makePrescription(String AID, String date, String advice, String medicine){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String insertQuery = "INSERT INTO PRESCRIPTION (PRESCRIPTION_ADVICE, PRESCRIPTION_DATE,MEDICINE, AID) VALUES (?, ?, ?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1,advice);
+            preparedStatement.setString(2,date);
+            preparedStatement.setString(3,medicine);
+            preparedStatement.setString(4,AID);
             preparedStatement.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

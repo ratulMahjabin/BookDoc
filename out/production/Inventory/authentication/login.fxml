@@ -19,7 +19,7 @@
          <children>
             <ImageView fitHeight="400.0" fitWidth="247.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/hospital-building-vector-icon-illustration-building-landmark-icon-concept-white-isolated_138676-440.jpg" />
+                  <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/src/resources/hospital-building-vector-icon-illustration-building-landmark-icon-concept-white-isolated_138676-440.jpg" />
                </image>
             </ImageView>
             <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#backButtonPress" prefHeight="34.0" prefWidth="90.0" style="-fx-background-color: f3f3f9;" text="Go Back">
