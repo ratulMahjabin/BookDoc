@@ -170,6 +170,33 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public void getPrescription(String PID, TextField name, TextField date, TextField age, TextField gender, TextField advice, TextField medicine){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String fetchQuery = "SELECT PAT_NAME,PAT_AGE,PAT_GENDER,MEDICINE,PRESCRIPTION_ADVICE,PRESCRIPTION_DATE FROM PRESCRIPTION WHERE PID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(fetchQuery);
+            preparedStatement.setString(1,PID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String patName = resultSet.getString(1);
+                String patAge = resultSet.getString(2);
+                String patGender = resultSet.getString(3);
+                String makeDate = resultSet.getString(6);
+                String presMedicine = resultSet.getString(4);
+                String presAdvice = resultSet.getString(5);
+                name.setText(patName);
+                age.setText(patAge);
+                gender.setText(patGender);
+                date.setText(makeDate);
+                medicine.setText(presMedicine);
+                advice.setText(presAdvice);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

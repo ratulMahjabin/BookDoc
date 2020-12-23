@@ -30,6 +30,15 @@ public class DoctorDashboard {
         window.show();
     }
 
+    public void showPrescriptionButtonPress(ActionEvent event) throws IOException {
+        Parent loginViewParent = FXMLLoader.load(getClass().getResource("..//doctorInterface//ViewPrescription.fxml"));
+        Scene loginViewScene = new Scene(loginViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(loginViewScene);
+        window.setResizable(false);
+        window.show();
+    }
+
     public void logoutButtonPress(ActionEvent event) throws IOException {
         Parent loginViewParent = FXMLLoader.load(getClass().getResource("..//authentication//login.fxml"));
         Scene loginViewScene = new Scene(loginViewParent);

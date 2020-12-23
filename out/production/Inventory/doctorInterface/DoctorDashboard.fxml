@@ -17,7 +17,7 @@
                         <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/src/resources/doctor-female-character-with-stethoscope-uniform-cartoon_24640-62243.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="btnLogout" layoutX="27.0" layoutY="22.0" mnemonicParsing="false" onAction="#logoutButtonPress" prefHeight="39.0" prefWidth="94.0" style="-fx-background-color: f3f3f9;" text="Logout">
+                <Button fx:id="btnLogout" layoutX="27.0" layoutY="22.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="94.0" style="-fx-background-color: f3f3f9;" text="Logout">
                     <font>
                         <Font name="Berlin Sans FB" size="20.0" />
                     </font>
@@ -39,7 +39,7 @@
                         <DropShadow />
                     </effect>
                 </Button>
-                <Button fx:id="btnShowPrescription" layoutX="46.0" layoutY="232.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="209.0" style="-fx-background-color: f3f3f9;" text="Show Prescription">
+                <Button fx:id="btnShowPrescription" layoutX="46.0" layoutY="232.0" mnemonicParsing="false" onAction="#showPrescriptionButtonPress" prefHeight="69.0" prefWidth="209.0" style="-fx-background-color: f3f3f9;" text="Show Prescription">
                     <font>
                         <Font name="Berlin Sans FB" size="20.0" />
                     </font>
