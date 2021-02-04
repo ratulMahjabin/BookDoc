@@ -155,6 +155,33 @@ public class Database {
         }
     }
 
+    public void getPrescriptionData(String PID, TextField name, TextField age, TextField gender, TextField docName,TextField date){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String fetchQuery = "SELECT PRESCRIPTION_DATE, PAT_NAME,PAT_AGE,PAT_GENDER,DOC_NAME FROM PRESCRIPTION WHERE PID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(fetchQuery);
+            preparedStatement.setString(1,PID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String prescriptionDate = resultSet.getString(2);
+                String patName = resultSet.getString(3);
+                String patGender = resultSet.getString(4);
+                String doctorName = resultSet.getString(8);
+                String patAge = resultSet.getString(5);
+                name.setText(patName);
+                date.setText(prescriptionDate);
+                gender.setText(patGender);
+                age.setText(patAge);
+                docName.setText(doctorName);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void makePrescription(String AID, String date, String advice, String medicine){
         try {
             Class.forName(JDBC_DRIVER);
@@ -197,6 +224,53 @@ public class Database {
             e.printStackTrace();
         }
     }
+    public void getBill(String AID, TextField name, TextField date, TextField age, TextField gender, TextField totalBill,TextField docName){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String fetchQuery = "SELECT PRESCRIPTION_DATE, PAT_NAME,PAT_AGE,PAT_GENDER,DOC_NAME,AMOUNT WHERE AID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(fetchQuery);
+            preparedStatement.setString(1,AID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String prescriptionDate = resultSet.getString(1);
+                String patName = resultSet.getString(2);
+                String patGender = resultSet.getString(3);
+                String doctorName = resultSet.getString(4);
+                String patAge = resultSet.getString(5);
+                String billAmount = resultSet.getString(6);
+                name.setText(patName);
+                date.setText(prescriptionDate);
+                gender.setText(patGender);
+                age.setText(patAge);
+                docName.setText(doctorName);
+                totalBill.setText(billAmount);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void makeBill(String AID, String date, String name, String gender, String docName, String age, String bill){
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(url,user,password);
+            String insertQuery = "INSERT INTO PRESCRIPTION (AID,PAT_AGE, PAT_NAME, PAT_GENDER,DOC_NAME,AMOUNT) VALUES (?, ?, ?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1,AID);
+            preparedStatement.setString(2,age);
+            preparedStatement.setString(3,name);
+            preparedStatement.setString(4,gender);
+            preparedStatement.setString(5,docName);
+            preparedStatement.setString(6,bill);
+            preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 

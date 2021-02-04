@@ -38,7 +38,7 @@ public class ReceptionistDashboard {
         window.show();
     }
     public void billButtonPress(ActionEvent event) throws IOException {
-        Parent loginViewParent = FXMLLoader.load(getClass().getResource(""));
+        Parent loginViewParent = FXMLLoader.load(getClass().getResource("..//receptionistInterface//BillDashboard.fxml"));
         Scene loginViewScene = new Scene(loginViewParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(loginViewScene);
