@@ -9,11 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class MakePrescription {
     @FXML
@@ -26,7 +28,7 @@ public class MakePrescription {
     private TextField patIdField;
 
     @FXML
-    private TextField dateField;
+    private DatePicker dateField;
 
     @FXML
     private TextField adviceField;
@@ -63,11 +65,11 @@ public class MakePrescription {
     }
     public void makePrescription(ActionEvent event){
         Window owner = btnPrescription.getScene().getWindow();
-        if (dateField.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please Enter Date");
-            return;
-        }
+//        if (dateField.getValue().isEqual(null)) {
+//            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+//                    "Please Enter Date");
+//            return;
+//        }
         if (adviceField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please Enter Advice for the patient");
@@ -78,7 +80,7 @@ public class MakePrescription {
                     "Please Enter Medicine name");
             return;
         }
-        String date = dateField.getText();
+        String date = ((TextField)dateField.getEditor()).getText();
         String advice = adviceField.getText();
         String medicine = medicineField.getText();
         String AID = patIdField.getText();
@@ -109,7 +111,7 @@ public class MakePrescription {
     }
 
     public void backButtonPress(ActionEvent event) throws IOException {
-        Parent loginViewParent = FXMLLoader.load(getClass().getResource("..//receptionistInterface//ReceptionistDashboard.fxml"));
+        Parent loginViewParent = FXMLLoader.load(getClass().getResource("..//doctorInterface//DoctorDashboard.fxml"));
         Scene loginViewScene = new Scene(loginViewParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(loginViewScene);

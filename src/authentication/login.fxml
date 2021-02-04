@@ -38,7 +38,7 @@
          <children>
             <ImageView fitHeight="84.0" fitWidth="80.0" layoutX="182.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/userLOGIN.png" />
+                  <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/src/resources/userLOGIN.png" />
                </image>
             </ImageView>
             <Label layoutX="36.0" layoutY="184.0" text="User Email">

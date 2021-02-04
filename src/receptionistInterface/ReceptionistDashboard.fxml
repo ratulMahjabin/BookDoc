@@ -39,7 +39,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="btnBill" layoutX="46.0" layoutY="232.0" mnemonicParsing="false" onAction="#billButtonPress" prefHeight="69.0" prefWidth="209.0" style="-fx-background-color: f3f3f9;" text="Show Bill">
+            <Button fx:id="btnBill" layoutX="46.0" layoutY="232.0" mnemonicParsing="false" onAction="#billButtonPress" prefHeight="69.0" prefWidth="209.0" style="-fx-background-color: f3f3f9;" text="Bill">
                <font>
                   <Font name="Berlin Sans FB" size="20.0" />
                </font>
