@@ -42,7 +42,7 @@
     <right>
         <AnchorPane prefHeight="400.0" prefWidth="344.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="9.0" layoutY="69.0" prefHeight="29.0" prefWidth="131.0" text="Appointment ID">
+                <Label layoutX="9.0" layoutY="69.0" prefHeight="29.0" prefWidth="131.0" text="Prescription ID">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
@@ -70,7 +70,7 @@
                         <Font name="Berlin Sans FB" size="22.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnPrescription" layoutX="111.0" layoutY="427.0" mnemonicParsing="false" onAction="#makePrescription" prefHeight="45.0" prefWidth="172.0" style="-fx-background-color: f3f3f9;" text="Make Bill">
+                <Button fx:id="btnPrescription" layoutX="111.0" layoutY="427.0" mnemonicParsing="false" onAction="#prepareBill" prefHeight="45.0" prefWidth="172.0" style="-fx-background-color: f3f3f9;" text="Make Bill">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
@@ -105,7 +105,7 @@
                     <cursor>
                         <Cursor fx:constant="DEFAULT" />
                     </cursor></TextField>
-                <Button fx:id="goButton" layoutX="244.0" layoutY="71.0" mnemonicParsing="false" onAction="#pressGoBtn" prefHeight="18.0" prefWidth="56.0" style="-fx-background-color: f3f3f9;" text="Go">
+                <Button fx:id="goButton" layoutX="244.0" layoutY="71.0" mnemonicParsing="false" onAction="#pressBillGoBtn" prefHeight="18.0" prefWidth="56.0" style="-fx-background-color: f3f3f9;" text="Go">
                     <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                     </font>

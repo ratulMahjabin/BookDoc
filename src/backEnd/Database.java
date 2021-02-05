@@ -105,8 +105,8 @@ public class Database {
             String insertQuery = "INSERT INTO DOCTOR (DOC_USERNAME, DOC_PASSWORD, DOC_NAME,DOC_GENDER, DOC_ADDRESS,DOC_DESIGNATION, DOC_NUMBER) VALUES (?, ?, ?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1, userEmail);
-            preparedStatement.setString(2, pass);
-            preparedStatement.setString(3, name);
+            preparedStatement.setString(3, pass);
+            preparedStatement.setString(2, name);
             preparedStatement.setString(4, gender);
             preparedStatement.setString(5, address);
             preparedStatement.setString(6,designation);
@@ -164,11 +164,11 @@ public class Database {
             preparedStatement.setString(1,PID);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                String prescriptionDate = resultSet.getString(2);
-                String patName = resultSet.getString(3);
+                String prescriptionDate = resultSet.getString(1);
+                String patName = resultSet.getString(2);
                 String patGender = resultSet.getString(4);
-                String doctorName = resultSet.getString(8);
-                String patAge = resultSet.getString(5);
+                String doctorName = resultSet.getString(5);
+                String patAge = resultSet.getString(3);
                 name.setText(patName);
                 date.setText(prescriptionDate);
                 gender.setText(patGender);
@@ -253,18 +253,14 @@ public class Database {
         }
     }
 
-    public void makeBill(String AID, String date, String name, String gender, String docName, String age, String bill){
+    public void makeBill(String AID,String bill){
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(url,user,password);
-            String insertQuery = "INSERT INTO PRESCRIPTION (AID,PAT_AGE, PAT_NAME, PAT_GENDER,DOC_NAME,AMOUNT) VALUES (?, ?, ?,?,?,?)";
+            String insertQuery = "INSERT INTO BILL (AID,PAT_AGE, PAT_NAME, PAT_GENDER,DOC_NAME,AMOUNT) VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1,AID);
-            preparedStatement.setString(2,age);
-            preparedStatement.setString(3,name);
-            preparedStatement.setString(4,gender);
-            preparedStatement.setString(5,docName);
-            preparedStatement.setString(6,bill);
+            preparedStatement.setString(2,bill);
             preparedStatement.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

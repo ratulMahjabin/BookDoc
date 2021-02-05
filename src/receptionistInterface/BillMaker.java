@@ -49,16 +49,8 @@ public class BillMaker {
     @FXML
     private TextField dateField;
 
-    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.show();
-    }
 
-    public void pressGoBtn(ActionEvent event){
+    public void pressBillGoBtn(ActionEvent event){
         Window owner = goButton.getScene().getWindow();
         if (AppIDField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -90,14 +82,28 @@ public class BillMaker {
     }
 
     public void prepareBill(ActionEvent event){
+        Window owner = btnPrescription.getScene().getWindow();
         String date = dateField.getText();
         String name = patNameField.getText();
-        String AID = AppIDField.getText();
+        String PID = AppIDField.getText();
         String gender = patGenderField.getText();
         String docName = doctorNameField.getText();
         String bill = billField.getText();
         String age = patAgeField.getText();
         Database database = new Database();
-        database.makeBill(AID,date,name,gender,docName,bill,age);
+        database.makeBill(PID,date,name,gender,docName,bill,age);
+        showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
+                "Bill made successfully!");
+
     }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
 }
