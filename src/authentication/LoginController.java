@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 
 public class LoginController {
-    ObservableList<String> roleChoiceList = FXCollections.observableArrayList("Admin", "Doctor", "Receptionist");
+    ObservableList<String> roleChoiceList = FXCollections.observableArrayList( "Doctor", "Receptionist");
     @FXML
     private ChoiceBox roleChoiceBox;
     @FXML
@@ -27,7 +27,7 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        roleChoiceBox.setValue("Admin");
+        roleChoiceBox.setValue("Doctor");
         roleChoiceBox.setItems(roleChoiceList);
     }
 

@@ -41,7 +41,7 @@
                   <Font name="Berlin Sans FB" size="30.0" />
                </font>
             </Text>
-            <Button layoutX="80.0" layoutY="112.0" mnemonicParsing="false" onAction="#AdminButtonPress" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: f3f3f9;" text="Admin">
+            <Button layoutX="80.0" layoutY="145.0" mnemonicParsing="false" onAction="#DoctorButtonPress" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: f3f3f9;" text="Doctor">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
@@ -52,18 +52,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button layoutX="79.0" layoutY="195.0" mnemonicParsing="false" onAction="#DoctorButtonPress" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: f3f3f9;" text="Doctor">
-               <font>
-                  <Font name="Berlin Sans FB" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Button>
-            <Button layoutX="79.0" layoutY="277.0" mnemonicParsing="false" onAction="#ReceptionistButtonPress" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: f3f3f9;" text="Receptionist">
+            <Button layoutX="82.0" layoutY="237.0" mnemonicParsing="false" onAction="#ReceptionistButtonPress" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: f3f3f9;" text="Receptionist">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>

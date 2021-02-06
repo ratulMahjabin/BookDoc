@@ -83,15 +83,10 @@ public class BillMaker {
 
     public void prepareBill(ActionEvent event){
         Window owner = btnPrescription.getScene().getWindow();
-        String date = dateField.getText();
-        String name = patNameField.getText();
         String PID = AppIDField.getText();
-        String gender = patGenderField.getText();
-        String docName = doctorNameField.getText();
         String bill = billField.getText();
-        String age = patAgeField.getText();
         Database database = new Database();
-        database.makeBill(PID,date,name,gender,docName,bill,age);
+        database.makeBill(PID,bill);
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
                 "Bill made successfully!");
 

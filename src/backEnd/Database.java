@@ -224,23 +224,21 @@ public class Database {
             e.printStackTrace();
         }
     }
-    public void getBill(String AID, TextField name, TextField date, TextField age, TextField gender, TextField totalBill,TextField docName){
+    public void getBill(String BID, TextField name, TextField age, TextField gender, TextField totalBill,TextField docName){
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(url,user,password);
-            String fetchQuery = "SELECT PRESCRIPTION_DATE, PAT_NAME,PAT_AGE,PAT_GENDER,DOC_NAME,AMOUNT WHERE AID=?";
+            String fetchQuery = "SELECT PAT_NAME,PAT_AGE,PAT_GENDER,DOC_NAME,AMOUNT FROM BILL WHERE BIll_NO=?";
             PreparedStatement preparedStatement = connection.prepareStatement(fetchQuery);
-            preparedStatement.setString(1,AID);
+            preparedStatement.setString(1,BID);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                String prescriptionDate = resultSet.getString(1);
-                String patName = resultSet.getString(2);
+                String patName = resultSet.getString(1);
                 String patGender = resultSet.getString(3);
                 String doctorName = resultSet.getString(4);
-                String patAge = resultSet.getString(5);
-                String billAmount = resultSet.getString(6);
+                String patAge = resultSet.getString(2);
+                String billAmount = resultSet.getString(5);
                 name.setText(patName);
-                date.setText(prescriptionDate);
                 gender.setText(patGender);
                 age.setText(patAge);
                 docName.setText(doctorName);
@@ -257,7 +255,7 @@ public class Database {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(url,user,password);
-            String insertQuery = "INSERT INTO BILL (AID,PAT_AGE, PAT_NAME, PAT_GENDER,DOC_NAME,AMOUNT) VALUES (?, ?)";
+            String insertQuery = "INSERT INTO BILL (PID,AMOUNT) VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1,AID);
             preparedStatement.setString(2,bill);

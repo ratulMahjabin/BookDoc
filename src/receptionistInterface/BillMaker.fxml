@@ -47,7 +47,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="AppIDField" layoutX="153.0" layoutY="72.0" prefHeight="25.0" prefWidth="76.0" />
+                <TextField fx:id="AppIDField" layoutX="153.0" layoutY="72.0" prefHeight="25.0" prefWidth="76.0" promptText="PXXX" />
                 <Label layoutX="9.0" layoutY="106.0" prefHeight="29.0" prefWidth="52.0" text="Date">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />

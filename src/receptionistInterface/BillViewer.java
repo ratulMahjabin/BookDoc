@@ -74,9 +74,9 @@ public class BillViewer {
                     "Please Enter Advice for the patient");
             return;
         }
-        String AID = AppIDField.getText();
+        String BID = AppIDField.getText();
         Database database = new Database();
-        database.getBill(AID,patNameField,dateField,patAgeField,patGenderField,totalBillfield,doctorNameField);
+        database.getBill(BID,patNameField,patAgeField,patGenderField,totalBillfield,doctorNameField);
 
     }
 
