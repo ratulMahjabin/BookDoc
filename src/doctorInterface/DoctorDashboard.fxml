@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctorInterface.DoctorDashboard">
+    <left>
+        <AnchorPane prefHeight="400.0" prefWidth="299.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="238.0" fitWidth="246.0" layoutX="32.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="file:/C:/Users/nafiz/Desktop/Study/DBMS_Project/src/resources/doctor-female-character-with-stethoscope-uniform-cartoon_24640-62243.jpg" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnLogout" layoutX="27.0" layoutY="22.0" mnemonicParsing="false" onAction="#logoutButtonPress" prefHeight="39.0" prefWidth="94.0" style="-fx-background-color: f3f3f9;" text="Logout">
+                    <font>
+                        <Font name="Berlin Sans FB" size="20.0" />
+                    </font>
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="400.0" prefWidth="303.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnMakePrescription" layoutX="46.0" layoutY="102.0" mnemonicParsing="false" onAction="#prescriptionButtonPress" prefHeight="69.0" prefWidth="209.0" style="-fx-background-color: f3f3f9;" text="Make Prescription">
+                    <font>
+                        <Font name="Berlin Sans FB" size="20.0" />
+                    </font>
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                </Button>
+                <Button fx:id="btnShowPrescription" layoutX="46.0" layoutY="232.0" mnemonicParsing="false" onAction="#showPrescriptionButtonPress" prefHeight="69.0" prefWidth="209.0" style="-fx-background-color: f3f3f9;" text="Show Prescription">
+                    <font>
+                        <Font name="Berlin Sans FB" size="20.0" />
+                    </font>
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>
