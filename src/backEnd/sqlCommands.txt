@@ -58,6 +58,8 @@ constraint fk_AID foreign key (AID) references appointment(AID)
 );
 
 
+drop table bill;
+
 --create table bill
 create table bill(
 bill_no varchar2(10) Not Null,
@@ -67,9 +69,43 @@ pat_name varchar2(60) Not Null,
 pat_gender varchar2(10) Not Null,
 doc_name varchar2(60) Not Null,
 amount NUMBER(19,9) Not Null,
+bill_date varchar2(60) not null,
 constraint pk_bill primary key (bill_no),
 constraint fk_bill_PID foreign key (PID) references prescription(PID)
 );
+
+--- Trigger for Bill Table
+CREATE OR REPLACE TRIGGER TRG_BILL
+BEFORE INSERT ON bill
+FOR EACH ROW
+
+DECLARE
+DOC_ID VARCHAR(10);
+
+BEGIN
+:NEW.BILL_NO := GEN_Bill_ID();
+
+IF :NEW.PAT_AGE IS NULL THEN
+     SELECT PAT_AGE INTO :NEW.PAT_AGE FROM prescription WHERE PID=:NEW.PID;
+END IF;
+
+IF :NEW.PAT_NAME IS NULL THEN
+     SELECT PAT_NAME INTO :NEW.PAT_NAME FROM prescription WHERE PID=:NEW.PID;
+END IF;
+
+IF :NEW.PAT_GENDER IS NULL THEN
+     SELECT PAT_GENDER INTO :NEW.PAT_GENDER FROM prescription WHERE PID=:NEW.PID;
+END IF;
+
+IF :NEW.DOC_NAME IS NULL THEN
+	SELECT doc_name INTO :NEW.doc_name FROM prescription WHERE PID=:NEW.PID;
+END IF;
+IF :NEW.bill_date IS NULL THEN
+	SELECT prescription_date INTO :NEW.bill_date FROM prescription WHERE PID=:NEW.PID;
+END IF;
+
+END;
+/
 
 
 

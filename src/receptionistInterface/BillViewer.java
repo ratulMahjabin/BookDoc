@@ -76,7 +76,7 @@ public class BillViewer {
         }
         String BID = AppIDField.getText();
         Database database = new Database();
-        database.getBill(BID,patNameField,patAgeField,patGenderField,totalBillfield,doctorNameField);
+        database.getBill(BID,patNameField,patAgeField,patGenderField,totalBillfield,doctorNameField,dateField);
 
     }
 

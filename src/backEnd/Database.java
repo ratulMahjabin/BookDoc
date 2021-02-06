@@ -224,11 +224,11 @@ public class Database {
             e.printStackTrace();
         }
     }
-    public void getBill(String BID, TextField name, TextField age, TextField gender, TextField totalBill,TextField docName){
+    public void getBill(String BID, TextField name, TextField age, TextField gender, TextField totalBill,TextField docName,TextField date){
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(url,user,password);
-            String fetchQuery = "SELECT PAT_NAME,PAT_AGE,PAT_GENDER,DOC_NAME,AMOUNT FROM BILL WHERE BIll_NO=?";
+            String fetchQuery = "SELECT PAT_NAME,PAT_AGE,PAT_GENDER,DOC_NAME,AMOUNT,BILL_DATE FROM BILL WHERE BIll_NO=?";
             PreparedStatement preparedStatement = connection.prepareStatement(fetchQuery);
             preparedStatement.setString(1,BID);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -238,11 +238,13 @@ public class Database {
                 String doctorName = resultSet.getString(4);
                 String patAge = resultSet.getString(2);
                 String billAmount = resultSet.getString(5);
+                String billDate = resultSet.getString(6);
                 name.setText(patName);
                 gender.setText(patGender);
                 age.setText(patAge);
                 docName.setText(doctorName);
                 totalBill.setText(billAmount);
+                date.setText(billDate);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
